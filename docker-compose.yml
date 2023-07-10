@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+ #   volumes:
+ #     - ./app.js:/app.js
+ #     - ./package.json:/package.json
+    restart: always
+
+  ftp:
+    image: stilliard/pure-ftpd
+    ports:
+      - 2121:21
+      - 30000-30009:30000-30009
+#    command: bash /run.sh
+    volumes:
+      - ./:/home/root
+    environment:
+      FTP_USER_NAME: root
+      FTP_USER_PASS: root
+      FTP_USER_HOME: /home/root
