@@ -6,9 +6,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
- #   volumes:
- #     - ./app.js:/app.js
- #     - ./package.json:/package.json
+    volumes:
+      - ./html:/usr/src/app/html
+#      - ./app.js:/app.js
+#      - ./package.json:/package.json
     restart: always
 
   ftp:
@@ -18,8 +19,10 @@ services:
       - 30000-30009:30000-30009
 #    command: bash /run.sh
     volumes:
-      - ./:/home/root
+      - ./html:/home/root
     environment:
       FTP_USER_NAME: root
-      FTP_USER_PASS: root
+      FTP_USER_PASS: toor
       FTP_USER_HOME: /home/root
+      FTP_USER_UID: 1001
+      FTP_USER_GID: 1001

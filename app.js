@@ -6,6 +6,8 @@ app.get('/', (req, res) => {
   res.send('Привет, это веб-сайт!');
 });
 
+app.use(express.static(`${__dirname}/html`));
+
 app.get('/test', (req, res) => {
   res.send('test');
 });
